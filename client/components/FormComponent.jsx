@@ -85,10 +85,8 @@ export default function FormComponent({ events, isSessionActive }) {
         {formData.frontierWorker === "Yes" && (
           <div className="space-y-2">
             <label className="block font-medium">
-              Is your company a subsidiary of a (parent) company?
-              <span className="text-sm text-gray-600 block">
-                If the company is a sole trader, choose 'No'
-              </span>
+              Is your company* a subsidiary of a parent company?
+             
             </label>
             <div className="flex gap-4">
               {["Yes", "No"].map((option) => (
@@ -104,13 +102,17 @@ export default function FormComponent({ events, isSessionActive }) {
                   {option}
                 </label>
               ))}
+              
             </div>
+            <span className="text-sm text-gray-600 block">
+                *If the company is a sole trader, choose 'No'
+              </span>
           </div>
         )}
 
         {/* V-number Input */}
         <div className="space-y-2">
-          <label className="block font-medium">V-number (if known)</label>
+          <label className="block font-medium">V-number</label>
           <input
             type="text"
             name="vNumber"

@@ -178,7 +178,7 @@ export default function ToolPanel({ isSessionActive, sendClientEvent, events }) 
     <section className="h-full w-full flex flex-col gap-4">
       {/* Transcript section */}
       <div className="p-4 bg-gray-50 rounded-md">
-        <h2 className="text-lg font-bold">Transcript</h2>
+        <h2 className="text-lg font-bold">Civil Assist</h2>
         <p className="text-base">
           {transcriptText || "Awaiting transcript..."}
         </p>
@@ -186,7 +186,7 @@ export default function ToolPanel({ isSessionActive, sendClientEvent, events }) 
       
       {/* Documentation viewer section */}
       <div className="h-full bg-gray-50 rounded-md p-4">
-        <h2 className="text-lg font-bold">Documentation Viewer</h2>
+        <h2 className="text-lg font-bold">Image Viewer</h2>
         {isSessionActive ? (
           functionCallOutput ? (
             <FunctionCallOutput functionCallOutput={functionCallOutput} />
@@ -194,7 +194,7 @@ export default function ToolPanel({ isSessionActive, sendClientEvent, events }) 
             <p>Ask about official documents or procedures...</p>
           )
         ) : (
-          <p>Start the session to use this tool...</p>
+          <p>Ask Civil Assist to show something visually...</p>
         )}
       </div>
     </section>
