@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "/assets/openai-logomark.svg";
+import logo from "/assets/auas-logomark.png";
 import EventLog from "./EventLog";
 import SessionControls from "./SessionControls";
 import ToolPanel from "./ToolPanel";
+import FormComponent from "./FormComponent";
+
+
 
 export default function App() {
   const [isSessionActive, setIsSessionActive] = useState(false);
@@ -64,13 +67,6 @@ export default function App() {
     if (dataChannel) {
       dataChannel.close();
     }
-
-    peerConnection.current.getSenders().forEach((sender) => {
-      if (sender.track) {
-        sender.track.stop();
-      }
-    });
-
     if (peerConnection.current) {
       peerConnection.current.close();
     }
@@ -135,14 +131,17 @@ export default function App() {
       <nav className="absolute top-0 left-0 right-0 h-16 flex items-center">
         <div className="flex items-center gap-4 w-full m-4 pb-2 border-0 border-b border-solid border-gray-200">
           <img style={{ width: "24px" }} src={logo} />
-          <h1>realtime console</h1>
+          <h1>Civil Assist</h1>
         </div>
       </nav>
       <main className="absolute top-16 left-0 right-0 bottom-0">
-        <section className="absolute top-0 left-0 right-[380px] bottom-0 flex">
-          <section className="absolute top-0 left-0 right-0 bottom-32 px-4 overflow-y-auto">
-            <EventLog events={events} />
-          </section>
+      <section className="absolute top-0 left-0 right-[380px] bottom-0 flex">
+    <section className="absolute top-0 left-0 right-0 bottom-0 px-4 overflow-y-auto">
+      <FormComponent 
+        events={events}
+        isSessionActive={isSessionActive}
+      />
+    </section>
           <section className="absolute h-32 left-0 right-0 bottom-0 p-4">
             <SessionControls
               startSession={startSession}
@@ -154,7 +153,10 @@ export default function App() {
             />
           </section>
         </section>
+      
+      
         <section className="absolute top-0 w-[380px] right-0 bottom-0 p-4 pt-0 overflow-y-auto">
+     
           <ToolPanel
             sendClientEvent={sendClientEvent}
             sendTextMessage={sendTextMessage}
